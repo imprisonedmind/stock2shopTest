@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/buttons/button";
 import { useModalContext } from "@/lib/modalContext";
-import NewProductModal from "@/components/product/newProductModal";
+import ProductOverview from "@/components/product/productOverview";
 
 export default function NewProductButton() {
   const { openModal } = useModalContext();
@@ -9,7 +9,7 @@ export default function NewProductButton() {
   return (
     <Button
       title={"New Product"}
-      callback={() => openModal(<NewProductModal />)}
+      callback={() => openModal(<ProductOverview />)}
       style={"!from-gray-100 !to-gray-50 !text-gray-950"}
     />
   );

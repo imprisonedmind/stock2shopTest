@@ -4,6 +4,7 @@ import { FormikHandlers } from "formik";
 interface FormInputProps {
   required?: boolean;
   autoFocus?: boolean;
+  value: any;
   placeholder: string;
   inputId: string;
   type?: string;
@@ -15,6 +16,7 @@ interface FormInputProps {
 export const FormInput: FC<FormInputProps> = ({
   required,
   autoFocus = false,
+  value,
   placeholder,
   inputId,
   type,
@@ -27,6 +29,8 @@ export const FormInput: FC<FormInputProps> = ({
     <input
       required={required}
       autoFocus={autoFocus}
+      value={value}
+      placeholder={`Enter a ${placeholder}`}
       id={inputId}
       type={type || "text"}
       max={max}
@@ -34,7 +38,6 @@ export const FormInput: FC<FormInputProps> = ({
       onChange={onChange}
       onBlur={onBlur}
       className={"rounded-md border border-gray-200 bg-gray-100 p-2 text-sm"}
-      placeholder={`Enter a ${placeholder}`}
     />
   );
 };

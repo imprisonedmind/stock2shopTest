@@ -6,25 +6,20 @@ import { FormSelect } from "@/components/forms/formSelect";
 import { FormOption } from "@/components/forms/formOption";
 import { Button } from "@/components/buttons/button";
 import { useFormik } from "formik";
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
+import { InitialProductValues } from "@/app/types";
+import { validateForm } from "@/lib/utils";
+import FormOptionDefault from "@/components/forms/formOptionDefault";
 
-export default function NewProductModal() {
-  const validateForm = (values) => {
-    let errors: { sku: string; size: string; grams: string } = {};
-    if (!values.sku) {
-      errors.sku = "Required";
-    }
-    if (!values.size) {
-      errors.size = "Required";
-    }
-    if (values.grams <= 0) {
-      errors.grams = "Must be greater than zero";
-    }
-    return errors;
-  };
+interface ProductOverviewProps {
+  initialValues: InitialProductValues;
+}
 
+export const ProductOverview: FC<ProductOverviewProps> = ({
+  initialValues,
+}) => {
   const formik = useFormik({
-    initialValues: {
+    initialValues: initialValues || {
       sku: "",
       size: "",
       grams: 0,
@@ -40,8 +35,6 @@ export default function NewProductModal() {
     formik.validateForm();
   }, []);
 
-  console.log(formik.values);
-
   return (
     <QuickViewWrapper title={"Add a New Product"}>
       <form
@@ -54,6 +47,7 @@ export default function NewProductModal() {
             required={true}
             autoFocus={true}
             onChange={formik.handleChange}
+            value={formik.values.sku}
             placeholder={"SKU"}
             inputId={"sku"}
             maxLength={3}
@@ -66,8 +60,13 @@ export default function NewProductModal() {
             htmlFor={"size"}
             errors={formik.errors.size}
           />
-          <FormSelect id={"size"} name={"size"} onChange={formik.handleChange}>
-            <FormOption value={"--Please Select--"} id={"size"} />
+          <FormSelect
+            id={"size"}
+            name={"size"}
+            onChange={formik.handleChange}
+            defaultValue={formik.values.size || "none"}
+          >
+            <FormOptionDefault />
             <FormOption value={"Extra Small"} id={"size"} />
             <FormOption value={"Small"} id={"size"} />
             <FormOption value={"Medium"} id={"size"} />
@@ -85,6 +84,7 @@ export default function NewProductModal() {
           <FormInput
             required={true}
             onChange={formik.handleChange}
+            value={formik.values.grams}
             placeholder={"grams"}
             inputId={"grams"}
             type={"number"}
@@ -102,4 +102,4 @@ export default function NewProductModal() {
       </div>
     </QuickViewWrapper>
   );
-}
+};

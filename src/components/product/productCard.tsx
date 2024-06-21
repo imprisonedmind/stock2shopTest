@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Product } from "@/app/types";
 import { ProductAttributes } from "@/components/product/productAttributes";
-import ProductCardButton from "@/components/buttons/productCardButton";
+import { ProductCardButton } from "@/components/buttons/productCardButton";
 
 interface ProductCardProps {
   sku: string;
@@ -21,7 +21,13 @@ export const ProductCard: FC<ProductCardProps> = ({ sku, attributes }) => {
       </p>
 
       <ProductAttributes attributes={attributes} />
-      <ProductCardButton />
+      <ProductCardButton
+        initialValues={{
+          sku: sku,
+          size: attributes.size,
+          grams: attributes.grams,
+        }}
+      />
     </div>
   );
 };

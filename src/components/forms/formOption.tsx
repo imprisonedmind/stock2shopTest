@@ -7,8 +7,8 @@ interface FormOptionProps {
 
 export const FormOption: FC<FormOptionProps> = ({ value, id }) => {
   return (
-    <option id={id} name={id} value={value}>
-      {value}
+    <option id={id} name={id} value={value.toLowerCase()}>
+      {value.toLowerCase()}
     </option>
   );
 };

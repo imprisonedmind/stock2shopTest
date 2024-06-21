@@ -1,5 +1,5 @@
 "use client";
-import { FC, ReactNode, useEffect, useRef } from "react";
+import { FC, ReactNode } from "react";
 import { FormikHandlers } from "formik";
 
 interface FormSelectProps {
@@ -7,6 +7,7 @@ interface FormSelectProps {
   name: string;
   children: ReactNode;
   onChange: FormikHandlers["handleChange"];
+  defaultValue: string;
 }
 
 export const FormSelect: FC<FormSelectProps> = ({
@@ -14,6 +15,7 @@ export const FormSelect: FC<FormSelectProps> = ({
   id,
   name,
   onChange,
+  defaultValue,
 }) => {
   return (
     <div
@@ -26,6 +28,7 @@ export const FormSelect: FC<FormSelectProps> = ({
         id={id}
         name={name}
         onChange={onChange}
+        value={defaultValue}
         className={"w-full bg-gray-100 p-2 focus:outline-none"}
       >
         {children}
