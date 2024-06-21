@@ -4,7 +4,7 @@ import { useModalContext } from "@/lib/modalContext";
 import { ProductOverview } from "@/components/product/productOverview";
 
 import { FC } from "react";
-import { InitialProductValues, Product } from "@/app/types";
+import { Product } from "@/app/types";
 
 interface ProductCardButtonProps {
   initialValues: Product;

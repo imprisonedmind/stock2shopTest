@@ -47,6 +47,9 @@ export const ProductOverview: FC<ProductOverviewProps> = ({
 
   return (
     <QuickViewWrapper title={title}>
+      {/*
+        TODO: find a way to map through & and unknown attribute fields
+      */}
       <form
         onSubmit={formik.handleSubmit}
         className={"flex flex-col gap-4 p-4"}
@@ -72,7 +75,7 @@ export const ProductOverview: FC<ProductOverviewProps> = ({
           <FormLabel
             title={"size"}
             htmlFor={"attributes.size"}
-            errors={formik.errors.size}
+            errors={formik.errors.attributes?.size}
           />
           <FormSelect
             id={"size"}
@@ -93,7 +96,7 @@ export const ProductOverview: FC<ProductOverviewProps> = ({
           <FormLabel
             title={"grams"}
             htmlFor={"attributes.grams"}
-            errors={formik.errors.grams}
+            errors={formik.errors.attributes?.grams}
           />
           <FormInput
             required={true}

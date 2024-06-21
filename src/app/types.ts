@@ -1,9 +1,9 @@
 export interface Product {
   attributes: {
-    foo: string;
+    foo?: string;
     grams?: string;
     size?: string;
-    [key: string]: string | number | boolean; // Allow any additional attributes
+    [key: string]: string | number | boolean | undefined; // Allow any additional attributes
   };
   sku: string;
 }

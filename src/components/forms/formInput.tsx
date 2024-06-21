@@ -23,7 +23,6 @@ export const FormInput: FC<FormInputProps> = ({
   max,
   maxLength,
   onChange,
-  onBlur,
 }) => {
   return (
     <input
@@ -36,7 +35,6 @@ export const FormInput: FC<FormInputProps> = ({
       max={max}
       maxLength={maxLength}
       onChange={onChange}
-      onBlur={onBlur}
       className={"rounded-md border border-gray-200 bg-gray-100 p-2 text-sm"}
     />
   );

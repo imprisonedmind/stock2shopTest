@@ -41,7 +41,7 @@ export const ModalProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <ModalContext.Provider value={{ isOpen, openModal, closeModal }}>
       <div ref={modalRef} />
-      <Modal modalChildren={modalChildren} modalRef={modalRef} />
+      <Modal modalChildren={modalChildren} modalRef={modalRef.current!} />
       {children}
     </ModalContext.Provider>
   );
