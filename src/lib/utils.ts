@@ -2,8 +2,8 @@ import { Product } from "@/app/types";
 
 export const validateForm = (values: Product) => {
   let errors: {
-    sku?: string;
-    attributes?: {
+    sku: string;
+    attributes: {
       size: string;
       grams: string;
     };
@@ -14,7 +14,7 @@ export const validateForm = (values: Product) => {
   }
 
   if (!errors.attributes) {
-    errors.attributes = { grams: "", size: "" };
+    errors.attributes = {};
   }
 
   if (!values.attributes.size) {
@@ -26,5 +26,14 @@ export const validateForm = (values: Product) => {
   ) {
     errors.attributes.grams = "Must be greater than zero";
   }
+
+  // TODO: this is really gross, I want to fix this...
+  // it is required to cleanup my errors object as line 16 forces
+  // the object to have a key which later causes formik.isValid to always
+  // be false
+  if (Object.keys(errors.attributes).length === 0) {
+    delete errors.attributes;
+  }
+
   return errors;
 };
