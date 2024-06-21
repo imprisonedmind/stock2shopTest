@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Product } from "@/app/types";
-import { Button } from "@/components/buttons/button";
 import { ProductAttributes } from "@/components/product/productAttributes";
+import ProductCardButton from "@/components/buttons/productCardButton";
 
 interface ProductCardProps {
   sku: string;
@@ -21,14 +21,7 @@ export const ProductCard: FC<ProductCardProps> = ({ sku, attributes }) => {
       </p>
 
       <ProductAttributes attributes={attributes} />
-
-      <div className={"p-2"}>
-        <Button
-          title={`Edit`}
-          callback={() => console.log("clicked")}
-          style={"w-full p-2"}
-        />
-      </div>
+      <ProductCardButton />
     </div>
   );
 };
