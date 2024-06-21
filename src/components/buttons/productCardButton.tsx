@@ -16,7 +16,7 @@ export const ProductCardButton: FC<ProductCardButtonProps> = ({
   const { openModal } = useModalContext();
 
   return (
-    <div className={"p-2"}>
+    <div className={"flex h-full flex-col justify-end p-2"}>
       <Button
         title={`Edit`}
         callback={() =>
@@ -27,7 +27,7 @@ export const ProductCardButton: FC<ProductCardButtonProps> = ({
             />,
           )
         }
-        style={"w-full p-2"}
+        style={"w-full p-2 h-fit"}
       />
     </div>
   );

@@ -17,8 +17,6 @@ export async function GetProducts() {
 }
 
 export async function PostProduct({ product }: { product: Product }) {
-  console.log(JSON.stringify(product));
-
   const res = await fetch(
     `${process.env.BASE_API_URL}products/${product.sku}`,
     {

@@ -45,8 +45,6 @@ export const ProductOverview: FC<ProductOverviewProps> = ({
     formik.validateForm();
   }, []);
 
-  console.log(formik.values);
-
   return (
     <QuickViewWrapper title={title}>
       <form
