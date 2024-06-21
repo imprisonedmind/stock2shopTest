@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { Product } from "@/app/types";
 import { Button } from "@/components/buttons/button";
+import { ProductAttributes } from "@/components/product/productAttributes";
 
 interface ProductCardProps {
   sku: string;
@@ -18,20 +19,14 @@ export const ProductCard: FC<ProductCardProps> = ({ sku, attributes }) => {
         <span className={"text-xs"}>Sku:</span>{" "}
         <span className={"font-medium"}>{sku}</span>
       </p>
-      {Object.entries(attributes).map(([key, value], index) => (
-        <div
-          key={key + index}
-          className={"flex flex-row items-center justify-between p-2"}
-        >
-          <p className={"text-sm font-medium"}>{key}</p>
-          <p className={"text-xs"}>{value}</p>
-        </div>
-      ))}
+
+      <ProductAttributes attributes={attributes} />
+
       <div className={"p-2"}>
         <Button
-          title={`Edit ${sku}`}
+          title={`Edit`}
           callback={() => console.log("clicked")}
-          style={"w-full"}
+          style={"w-full p-2"}
         />
       </div>
     </div>
