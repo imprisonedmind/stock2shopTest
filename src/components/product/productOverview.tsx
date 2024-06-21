@@ -7,27 +7,37 @@ import { FormOption } from "@/components/forms/formOption";
 import { Button } from "@/components/buttons/button";
 import { useFormik } from "formik";
 import { FC, useEffect } from "react";
-import { InitialProductValues } from "@/app/types";
+import { Product } from "@/app/types";
 import { validateForm } from "@/lib/utils";
 import FormOptionDefault from "@/components/forms/formOptionDefault";
+import { PostProduct } from "@/app/actions";
+import { useRouter } from "next/navigation";
 
 interface ProductOverviewProps {
-  initialValues: InitialProductValues;
+  initialValues?: Product;
+  title: string;
 }
 
 export const ProductOverview: FC<ProductOverviewProps> = ({
   initialValues,
+  title,
 }) => {
+  const { refresh } = useRouter();
+
   const formik = useFormik({
     initialValues: initialValues || {
       sku: "",
-      size: "",
-      grams: 0,
+      attributes: {
+        size: "",
+        grams: "",
+      },
     },
     validate: validateForm,
     validateOnChange: true,
     onSubmit: async (values) => {
-      console.log(`WE SENT OFF DATA: ${values}`);
+      PostProduct({ product: values }).then((res) => {
+        refresh();
+      });
     },
   });
 
@@ -35,14 +45,20 @@ export const ProductOverview: FC<ProductOverviewProps> = ({
     formik.validateForm();
   }, []);
 
+  console.log(formik.values);
+
   return (
-    <QuickViewWrapper title={"Add a New Product"}>
+    <QuickViewWrapper title={title}>
       <form
         onSubmit={formik.handleSubmit}
         className={"flex flex-col gap-4 p-4"}
       >
         <LabelInputWrapper>
-          <FormLabel title={"SKU"} htmlFor={"sku"} errors={formik.errors.sku} />
+          <FormLabel
+            title={"SKU"}
+            htmlFor={"attributes.sku"}
+            errors={formik.errors.sku}
+          />
           <FormInput
             required={true}
             autoFocus={true}
@@ -57,14 +73,14 @@ export const ProductOverview: FC<ProductOverviewProps> = ({
         <LabelInputWrapper>
           <FormLabel
             title={"size"}
-            htmlFor={"size"}
+            htmlFor={"attributes.size"}
             errors={formik.errors.size}
           />
           <FormSelect
             id={"size"}
-            name={"size"}
+            name={"attributes.size"}
             onChange={formik.handleChange}
-            defaultValue={formik.values.size || "none"}
+            defaultValue={formik.values.attributes?.size || "none"}
           >
             <FormOptionDefault />
             <FormOption value={"Extra Small"} id={"size"} />
@@ -78,15 +94,15 @@ export const ProductOverview: FC<ProductOverviewProps> = ({
         <LabelInputWrapper>
           <FormLabel
             title={"grams"}
-            htmlFor={"grams"}
+            htmlFor={"attributes.grams"}
             errors={formik.errors.grams}
           />
           <FormInput
             required={true}
             onChange={formik.handleChange}
-            value={formik.values.grams}
+            value={formik.values.attributes.grams}
             placeholder={"grams"}
-            inputId={"grams"}
+            inputId={"attributes.grams"}
             type={"number"}
             max={1000}
           />

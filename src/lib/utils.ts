@@ -3,10 +3,10 @@ export const validateForm = (values) => {
   if (!values.sku) {
     errors.sku = "Required";
   }
-  if (!values.size) {
+  if (!values.attributes.size) {
     errors.size = "Required";
   }
-  if (values.grams <= 0 || !values.grams) {
+  if (parseInt(values.attributes.grams) <= 0 || !values.attributes.grams) {
     errors.grams = "Must be greater than zero";
   }
   return errors;

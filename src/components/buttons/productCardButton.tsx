@@ -4,10 +4,10 @@ import { useModalContext } from "@/lib/modalContext";
 import { ProductOverview } from "@/components/product/productOverview";
 
 import { FC } from "react";
-import { InitialProductValues } from "@/app/types";
+import { InitialProductValues, Product } from "@/app/types";
 
 interface ProductCardButtonProps {
-  initialValues: InitialProductValues;
+  initialValues: Product;
 }
 
 export const ProductCardButton: FC<ProductCardButtonProps> = ({
@@ -20,7 +20,12 @@ export const ProductCardButton: FC<ProductCardButtonProps> = ({
       <Button
         title={`Edit`}
         callback={() =>
-          openModal(<ProductOverview initialValues={initialValues} />)
+          openModal(
+            <ProductOverview
+              initialValues={initialValues}
+              title={`Edit ${initialValues.sku}`}
+            />,
+          )
         }
         style={"w-full p-2"}
       />

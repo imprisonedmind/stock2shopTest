@@ -29,7 +29,7 @@ export const FormInput: FC<FormInputProps> = ({
     <input
       required={required}
       autoFocus={autoFocus}
-      value={value}
+      defaultValue={value}
       placeholder={`Enter a ${placeholder}`}
       id={inputId}
       type={type || "text"}
