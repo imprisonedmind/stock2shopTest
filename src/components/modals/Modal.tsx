@@ -8,7 +8,7 @@ interface ModalProps {
   modalRef: HTMLDivElement;
 }
 
-export const Modal: FC<ModalProps> = ({ modalChildren, m, modalRef }) => {
+export const Modal: FC<ModalProps> = ({ modalChildren, modalRef }) => {
   const { isOpen, closeModal } = useModalContext();
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export const Modal: FC<ModalProps> = ({ modalChildren, m, modalRef }) => {
 
   return (
     <Fragment>
-      {modalRef?.current &&
+      {modalRef &&
         isOpen &&
         createPortal(
           <div
@@ -42,7 +42,7 @@ export const Modal: FC<ModalProps> = ({ modalChildren, m, modalRef }) => {
           >
             <div id={"modalChildren"}>{modalChildren}</div>
           </div>,
-          modalRef.current,
+          modalRef,
         )}
     </Fragment>
   );

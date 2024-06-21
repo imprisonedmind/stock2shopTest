@@ -24,8 +24,7 @@ export const ProductCard: FC<ProductCardProps> = ({ sku, attributes }) => {
       <ProductCardButton
         initialValues={{
           sku: sku,
-          size: attributes.size,
-          grams: attributes.grams,
+          attributes,
         }}
       />
     </div>

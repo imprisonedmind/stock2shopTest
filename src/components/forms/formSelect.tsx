@@ -28,7 +28,8 @@ export const FormSelect: FC<FormSelectProps> = ({
         id={id}
         name={name}
         onChange={onChange}
-        value={defaultValue}
+        required={true}
+        defaultValue={defaultValue}
         className={"w-full bg-gray-100 p-2 focus:outline-none"}
       >
         {children}

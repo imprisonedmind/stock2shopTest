@@ -23,20 +23,18 @@ export const FormInput: FC<FormInputProps> = ({
   max,
   maxLength,
   onChange,
-  onBlur,
 }) => {
   return (
     <input
       required={required}
       autoFocus={autoFocus}
-      value={value}
+      defaultValue={value}
       placeholder={`Enter a ${placeholder}`}
       id={inputId}
       type={type || "text"}
       max={max}
       maxLength={maxLength}
       onChange={onChange}
-      onBlur={onBlur}
       className={"rounded-md border border-gray-200 bg-gray-100 p-2 text-sm"}
     />
   );
