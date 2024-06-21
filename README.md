@@ -9,7 +9,7 @@ BASE_API_URL=http://localhost:5000
 Second, configure node version:
 
 ```
-node >= 18
+node >= 18.17.0
 ```
 
 Third, run the development server:

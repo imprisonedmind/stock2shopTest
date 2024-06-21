@@ -1,21 +1,11 @@
-import { GetProducts } from "@/app/actions";
+import { Products } from "@/components/product/product";
+
+const revalidate = 0;
 
 export default function Home() {
   return (
-    <main className={"mx-auto max-w-[760px]"}>
+    <main className={"mx-auto max-w-[760px] p-4"}>
       <Products />
     </main>
-  );
-}
-
-export async function Products() {
-  const data = await GetProducts();
-
-  return (
-    <div>
-      {data.map((product) => (
-        <div key={product.sku}>{product.sku}</div>
-      ))}
-    </div>
   );
 }

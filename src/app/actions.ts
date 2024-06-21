@@ -1,3 +1,4 @@
+"use server";
 import { Product } from "@/app/types";
 
 export async function GetProducts() {
@@ -8,7 +9,8 @@ export async function GetProducts() {
     },
   });
   if (res.ok) {
-    return (await res.json()) as Product[];
+    const data = await res.json();
+    return data as Product[];
   } else {
     throw new Error("Broken");
   }
