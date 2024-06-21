@@ -3,7 +3,7 @@ import { FC } from "react";
 interface FormLabelProps {
   title: string;
   htmlFor: string;
-  errors: string | undefined;
+  errors: string | any;
 }
 
 export const FormLabel: FC<FormLabelProps> = ({ title, htmlFor, errors }) => {
