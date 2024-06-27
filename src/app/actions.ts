@@ -1,12 +1,19 @@
 "use server";
 import { Product } from "@/app/types";
 
+import { revalidateTag } from "next/cache";
+
+export default async function action() {
+  revalidateTag("collection");
+}
+
 export async function GetProducts() {
   const res = await fetch(`${process.env.BASE_API_URL}products`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
+    cache: "no-store",
   });
   if (res.ok) {
     const data = await res.json();
@@ -24,6 +31,7 @@ export async function PostProduct({ product }: { product: Product }) {
       headers: {
         "Content-Type": "application/json",
       },
+      cache: "no-store",
       body: JSON.stringify(product),
     },
   );
