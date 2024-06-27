@@ -5,7 +5,7 @@ export async function Products() {
   const data = await GetProducts();
 
   return (
-    <section className={"xs:grid-cols-2 grid grid-cols-1 gap-4 sm:grid-cols-3"}>
+    <section className={"grid grid-cols-1 gap-4 xs:grid-cols-2 sm:grid-cols-3"}>
       {data.map((product) => (
         <ProductCard
           key={product.sku}
