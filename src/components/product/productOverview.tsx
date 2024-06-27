@@ -12,6 +12,7 @@ import { validateForm } from "@/lib/utils";
 import FormOptionDefault from "@/components/forms/formOptionDefault";
 import { PostProduct } from "@/app/actions";
 import { useRouter } from "next/navigation";
+import { useModalContext } from "@/lib/modalContext";
 
 interface ProductOverviewProps {
   initialValues?: Product;
@@ -22,6 +23,7 @@ export const ProductOverview: FC<ProductOverviewProps> = ({
   initialValues,
   title,
 }) => {
+  const { closeModal } = useModalContext();
   const { refresh } = useRouter();
 
   const formik = useFormik({
@@ -36,6 +38,7 @@ export const ProductOverview: FC<ProductOverviewProps> = ({
     validateOnChange: true,
     onSubmit: async (values) => {
       PostProduct({ product: values }).then((res) => {
+        closeModal();
         refresh();
       });
     },
