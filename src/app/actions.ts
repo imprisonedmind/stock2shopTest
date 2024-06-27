@@ -1,12 +1,6 @@
 "use server";
 import { Product } from "@/app/types";
 
-import { revalidateTag } from "next/cache";
-
-export default async function action() {
-  revalidateTag("collection");
-}
-
 export async function GetProducts() {
   const res = await fetch(`${process.env.BASE_API_URL}products`, {
     method: "GET",
